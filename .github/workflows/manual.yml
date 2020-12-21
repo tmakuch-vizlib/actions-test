@@ -10,10 +10,12 @@ jobs:
     steps:
       - name: Git pull
         uses: actions/checkout@v2
+        with:
+          persist-credentials: false
       - name: npm script promote-build
         run: |
           git config user.email "gucci@vizlib.com"
-          git config user.name "Vizlib"
+          git config user.name "$GITHUB_ACTOR"
           npm version minor
       - name: Git push
         uses: ad-m/github-push-action@v0.6.0

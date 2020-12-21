@@ -20,7 +20,7 @@ jobs:
       - name: Git push
         uses: ad-m/github-push-action@v0.6.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.SMALL_SCOPE_KEY }}
           tags: true
           branch: main
 

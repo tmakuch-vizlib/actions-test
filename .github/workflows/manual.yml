@@ -23,5 +23,4 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN_FOR_PROTECTED }}
           tags: true
           branch: main
-          force: true
 

@@ -18,7 +18,8 @@ jobs:
       - name: Git push
         uses: ad-m/github-push-action@v0.6.0
         with:
-          github_token: ${{ secrets.GH_TOKEN_FOR_PROTECTED }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           tags: true
           branch: main
+          force: true
 

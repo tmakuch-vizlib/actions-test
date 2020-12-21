@@ -1,30 +1,23 @@
-# This is a basic workflow to help you get started with Actions
+name: Promote build to qa
 
-name: Manual
-
-# Controls when the action will run. 
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  promote-build:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    name: Promote build
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Git pull
+        uses: actions/checkout@v2
+      - name: npm script promote-build
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          git config user.email "gucci@vizlib.com"
+          git config user.name "Vizlib"
+          npm version minor
+      - name: Git push
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tags: true
+
